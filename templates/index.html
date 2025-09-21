@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NLP Text Summarizer </title>
+    <link rel="stylesheet" href="{{ url_for('static', path='/css/style.css') }}">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-brand">
+                <i class="fas fa-brain"></i>
+                <span>NLP Text Summarizer</span>
+            </div>
+            <div class="nav-links">
+                <a href="#home" class="nav-link active">Home</a>
+                <a href="#about" class="nav-link">About</a>
+                <a href="#features" class="nav-link">Features</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-container">
+            <div class="hero-content">
+                <h1 class="hero-title">
+                    Text Summarization
+                    <span class="gradient-text">Made Simple</span>
+                </h1>
+                <p class="hero-description">
+                    Transform lengthy documents into concise, meaningful summaries using state-of-the-art 
+                    Transformer models. Perfect for research papers, articles, and documents.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="container">
+            <!-- Model Training Section -->
+            <section class="section">
+                <div class="section-header">
+                    <h2><i class="fas fa-cogs"></i> Model Training</h2>
+                    <p>Train the model with your dataset to improve summarization quality</p>
+                </div>
+                <div class="card">
+                    <div class="card-body">
+                        <div class="training-info">
+                            <div class="info-item">
+                                <i class="fas fa-database"></i>
+                                <span>Dataset: News Articles</span>
+                            </div>
+                            <div class="info-item">
+                                <i class="fas fa-robot"></i>
+                                <span>Model: T5 Transformer</span>
+                            </div>
+                            <div class="info-item">
+                                <i class="fas fa-clock"></i>
+                                <span>Est. Time: 15-30 minutes</span>
+                            </div>
+                        </div>
+                        <button id="trainBtn" class="btn btn-primary">
+                            <i class="fas fa-play"></i>
+                            Start Training
+                        </button>
+                        <div id="trainingStatus" class="status-message" style="display: none;"></div>
+                        <div id="trainingProgress" class="progress-container" style="display: none;">
+                            <div class="progress-bar">
+                                <div class="progress-fill"></div>
+                            </div>
+                            <div class="progress-text">Training in progress...</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Text Summarization Section -->
+            <section class="section">
+                <div class="section-header">
+                    <h2><i class="fas fa-magic"></i> Text Summarization</h2>
+                    <p>Enter your text below to generate an AI-powered summary</p>
+                </div>
+                <div class="summarization-container">
+                    <div class="input-section">
+                        <div class="card">
+                            <div class="card-header">
+                                <h3><i class="fas fa-edit"></i> Input Text</h3>
+                                <div class="text-counter">
+                                    <span id="charCount">0</span> characters
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <form id="summarizeForm">
+                                    <div class="form-group">
+                                        <textarea 
+                                            id="inputText" 
+                                            name="text" 
+                                            placeholder="Paste your text here to generate a summary. You can include articles, research papers, news content, or any lengthy text that you want to summarize..."
+                                            required
+                                        ></textarea>
+                                    </div>
+                                    <div class="form-actions">
+                                        <button type="button" id="clearBtn" class="btn btn-secondary">
+                                            <i class="fas fa-eraser"></i>
+                                            Clear
+                                        </button>
+                                        <button type="submit" id="summarizeBtn" class="btn btn-primary">
+                                            <i class="fas fa-compress-alt"></i>
+                                            Generate Summary
+                                        </button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="output-section">
+                        <div class="card">
+                            <div class="card-header">
+                                <h3><i class="fas fa-file-alt"></i> Generated Summary</h3>
+                                <button id="copyBtn" class="btn btn-outline" style="display: none;">
+                                    <i class="fas fa-copy"></i>
+                                    Copy
+                                </button>
+                            </div>
+                            <div class="card-body">
+                                <div id="summaryResult" class="summary-output">
+                                    <div class="placeholder">
+                                        <i class="fas fa-lightbulb"></i>
+                                        <p>Your AI-generated summary will appear here</p>
+                                    </div>
+                                </div>
+                                <div id="summaryLoading" class="loading-state" style="display: none;">
+                                    <div class="spinner"></div>
+                                    <p>Analyzing text and generating summary...</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Features Section -->
+            <section id="features" class="section">
+                <div class="section-header">
+                    <h2><i class="fas fa-star"></i> Key Features</h2>
+                    <p>Powerful capabilities of our NLP Text Summarizer</p>
+                </div>
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-bolt"></i>
+                        </div>
+                        <h3>Lightning Fast</h3>
+                        <p>Get summaries in seconds using optimized Transformer models</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-brain"></i>
+                        </div>
+                        <h3>AI-Powered</h3>
+                        <p>Leverages state-of-the-art T5 model for accurate summarization</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-language"></i>
+                        </div>
+                        <h3>Context Aware</h3>
+                        <p>Understands context and maintains key information in summaries</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-cog"></i>
+                        </div>
+                        <h3>Customizable</h3>
+                        <p>Train with your own data for domain-specific summarization</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- About Section -->
+            <section id="about" class="section">
+                <div class="section-header">
+                    <h2><i class="fas fa-info-circle"></i> About This Project</h2>
+                </div>
+                <div class="card">
+                    <div class="card-body">
+                        <p>
+                            This NLP Text Summarizer is built using cutting-edge machine learning technologies 
+                            including Transformers, specifically the T5 (Text-to-Text Transfer Transformer) model. 
+                            The application provides both training capabilities for custom datasets and real-time 
+                            text summarization functionality.
+                        </p>
+                        <div class="tech-stack">
+                            <h4>Technology Stack:</h4>
+                            <div class="tech-tags">
+                                <span class="tech-tag">Python</span>
+                                <span class="tech-tag">FastAPI</span>
+                                <span class="tech-tag">Transformers</span>
+                                <span class="tech-tag">PyTorch</span>
+                                <span class="tech-tag">Hugging Face</span>
+                                <span class="tech-tag">T5 Model</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <p>&copy; 2024 NLP Text Summarizer. Built with ❤️ using AI and Machine Learning.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Toast Notification -->
+    <div id="toast" class="toast">
+        <div class="toast-content">
+            <i class="toast-icon"></i>
+            <span class="toast-message"></span>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', path='/js/script.js') }}"></script>
+</body>
+</html>

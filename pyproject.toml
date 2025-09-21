@@ -1,0 +1,28 @@
+[project]
+name = "nlp-transformers-ml-pipeline"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "boto3>=1.40.30",
+    "datasets>=4.0.0",
+    "ensure==1.0.2",
+    "evaluate>=0.4.5",
+    "fastapi==0.78.0",
+    "jinja2==3.1.2",
+    "matplotlib>=3.10.6",
+    "mypy-boto3-s3>=1.40.26",
+    "nltk>=3.9.1",
+    "notebook>=7.4.5",
+    "pandas>=2.3.2",
+    "py7zr>=1.0.0",
+    "python-box==6.0.2",
+    "pyyaml>=6.0.2",
+    "rouge-score>=0.1.2",
+    "sacrebleu>=2.5.1",
+    "torch>=2.8.0",
+    "tqdm>=4.67.1",
+    "transformers[sentencepiece]>=4.56.1",
+    "uvicorn==0.18.3",
+]
